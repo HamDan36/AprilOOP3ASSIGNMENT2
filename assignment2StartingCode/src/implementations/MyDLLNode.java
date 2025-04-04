@@ -44,18 +44,46 @@ public class MyDLLNode<E> {
         this.data = data;
     }
 
+    /** 
+     * Returns the next node in the DLL
+     * Preconditions: a valid MyDLL object must exist
+     * Postconditions: the next node in the Dll is returned
+     * 
+     * @return Return the next node in the DLL
+     */
     public MyDLLNode<E> getNext() {
         return next;
     }
 
+    /**
+     * Sets the node to the next node in the doubly linked list
+     * Preconditions: a valid MyDLL object with more that one node must exist
+     * Postconditions: the parameter node is set to the next node in the DLL
+     * 
+     * @param next The node to be set into the next position in the DLL
+     */
     public void setNext(MyDLLNode<E> next) {
         this.next = next;
     }
 
+    /**
+     * Returns the previous node in the DLL
+     * Preconditions: a valid MyDLL object must exist
+     * Postconditions: return to the previous node in the DLL
+     * 
+     * @return Returns the previous node in the DLL
+     */
     public MyDLLNode<E> getPrevious() {
         return previous;
     }
 
+    /**
+     * Sets the parameter node to the position of previous node relative to the current node in the DLL
+     * Preconditions: a valid MyDLL object must exist with at more than one node
+     * Postconditions: the parameter node is set into the previous position in the DLL
+     * 
+     * @param previous The node to be set into the previous position in the DLL object
+     */
     public void setPrevious(MyDLLNode<E> previous) {
         this.previous = previous;
     }
