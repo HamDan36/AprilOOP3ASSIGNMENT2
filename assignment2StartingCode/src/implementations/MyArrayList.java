@@ -15,6 +15,12 @@ public class MyArrayList<E> implements ListADT<E> {
     private static final int DEFAULT_CAPACITY = 10;
     private final int MULTIPLIER = 2;
 
+    /**
+     * No argument constructor for MyArrayList class
+     * 
+     * Preconditions: none
+     * Postconditions: Creates a new array object based on the MyArrayList class
+     */
     @SuppressWarnings("unchecked")
     public MyArrayList() {
         array = (E[]) new Object[DEFAULT_CAPACITY];
@@ -225,6 +231,11 @@ public class MyArrayList<E> implements ListADT<E> {
         return new ArrayIterator();
     }
 
+    /**
+     * Private inner class that creates the iterator for MyArrayList. Traverses the elements of the list starting at index 0 in order to the end of the list.
+     * Returns the next element in the list in order 
+     * 
+     */
     private class ArrayIterator implements Iterator<E>
     {
         private int currentIndex = 0;
