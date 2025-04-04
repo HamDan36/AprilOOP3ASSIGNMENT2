@@ -139,7 +139,15 @@ public class MyDLL<E> implements ListADT<E> {
     public Iterator<E> iterator() {
         return new DLLIterator();
     }
-
+/**
+ * Returns the node at the specified index
+ * Preconditions: a valid MyDLLNode Object must exist
+ * Postconditions: the node at the specified index is returned
+ * 
+ * @param index Index of the node to retrieve
+ * @return Returns node at the specified index
+ * @throws IndexOutOfBoundsException If the index specified is negative or larger than the size of the DLL
+ */
     private MyDLLNode<E> getNode(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) throw new IndexOutOfBoundsException("Index out of bounds");
         MyDLLNode<E> current = head;
@@ -149,6 +157,10 @@ public class MyDLL<E> implements ListADT<E> {
         return current;
     }
 
+    /**
+     * Private inner class that creates the iterator for MyDLL
+     * Iterates through the list while returning each of the elements in order one at a time
+     */
     private class DLLIterator implements Iterator<E> {
         private MyDLLNode<E> current = head;
 
