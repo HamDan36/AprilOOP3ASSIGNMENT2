@@ -223,7 +223,8 @@ public class MyArrayList<E> implements ListADT<E> {
         private int currentIndex = 0;
 
         @Override
-        public boolean hasNext() {
+        public boolean hasNext() 
+        {
             return currentIndex < size;
         }
 
@@ -245,13 +246,27 @@ public class MyArrayList<E> implements ListADT<E> {
 			return array[currentIndex++];
 		}
     }
-
+    
+// **************************************************************
+//    @Override
+//    public Object[] toArray() 
+//    {
+//        return Arrays.copyOf(array, size);
+//    }
+    
     @Override
-    public Object[] toArray() 
+    public Object[] toArray()
     {
-        return Arrays.copyOf(array, size);
+    	Object[] newMyArray = new Object[size];
+    	for (int i = 0; i < size; i++)
+    	{
+    		newMyArray[i] = array[i];
+    	}
+    	
+    	return newMyArray;
     }
 
+// ********************************************************
     @SuppressWarnings("unchecked")
     @Override
     public E[] toArray(E[] holder) throws NullPointerException 
@@ -271,9 +286,9 @@ public class MyArrayList<E> implements ListADT<E> {
     {
         if (toChange == null) throw new NullPointerException("Cannot set null element");
         if (index < 0 || index >= size) throw new IndexOutOfBoundsException("Index out of bounds");
-        E old = array[index];
+        E oldElement = array[index];
         array[index] = toChange;
-        return old;
+        return oldElement;
     }
     
 	@SuppressWarnings("unchecked")
