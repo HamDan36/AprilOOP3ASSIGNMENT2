@@ -68,16 +68,6 @@ public class MyArrayList<E> implements ListADT<E> {
 		
 		return true;
 	}   
-
-//    @Override
-//    public boolean add(E toAdd) throws NullPointerException {
-//        if (toAdd == null) throw new NullPointerException("Cannot add null element");
-//        if (size == array.length) {
-//            array = Arrays.copyOf(array, array.length * 2);
-//        }
-//        array[size++] = toAdd;
-//        return true;
-//    }
  	
 	@Override
 	public boolean add(E toAdd) throws NullPointerException
