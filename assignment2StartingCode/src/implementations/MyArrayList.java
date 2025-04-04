@@ -88,53 +88,53 @@ public class MyArrayList<E> implements ListADT<E> {
 		return true;
 	}
 
-//    @Override
-//    public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
-//        if (toAdd == null) throw new NullPointerException("Cannot add null list");
-//        boolean changed = false;
-//        Iterator<? extends E> iter = toAdd.iterator();
-//        while (iter.hasNext()) {
-//            add(iter.next());
-//            changed = true;
-//        }
-//        return changed;
-//    }
+    @Override
+    public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
+        if (toAdd == null) throw new NullPointerException("Cannot add null list");
+        boolean changed = false;
+        Iterator<? extends E> iter = toAdd.iterator();
+        while (iter.hasNext()) {
+            add(iter.next());
+            changed = true;
+        }
+        return changed;
+    }
 	
-	@Override
-	public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException
-	{	
-		Iterator< ? extends E > iterator = toAdd.iterator();	
-		
-		if (toAdd == null) throw new NullPointerException("Collection cannot contain any null elements.");
-		
-		
-		int backupSize = size;
-		E[] backupArray = (E[]) new Object[backupSize];
-		
-		// create backup
-		for(int i = 0 ; i < array.length; i++)
-		{
-			backupArray[i] = array[i]; // copies all the objects in old array into new one
-		}
-		
-		try
-		{
-			while(iterator.hasNext() == true)
-			{
-				add(iterator.next());
-			}
-			size = array.length;
-		}
-		
-		catch (Exception e)
-		{
-			array = backupArray; // restore if failure to add all elements
-			size = backupSize;	
-			return false;
-		}
-		
-		return true;
-	}
+//	@Override
+//	public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException
+//	{	
+//		Iterator< ? extends E > iterator = toAdd.iterator();	
+//		
+//		if (toAdd == null) throw new NullPointerException("Cannot add null list.");
+//		
+////		int backupSize = size;
+////		E[] backupArray = (E[]) new Object[backupSize];
+//		
+//		
+//		// create backup
+//		for(int i = 0 ; i < array.length; i++)
+//		{
+//			backupArray[i] = array[i]; // copies all the objects in old array into new one
+//		}
+//		
+//		try
+//		{
+//			while(iterator.hasNext() == true)
+//			{
+//				add(iterator.next());
+//			}
+//			size = array.length;
+//		}
+//		
+//		catch (Exception e)
+//		{
+//			array = backupArray; // restore if failure to add all elements
+//			size = backupSize;	
+//			return false;
+//		}
+//		
+//		return true;
+//	}
 
     @Override
     public E remove(int index) throws IndexOutOfBoundsException 
@@ -254,39 +254,11 @@ public class MyArrayList<E> implements ListADT<E> {
 		}
     }
     
-// **************************************************************
-//    @Override
-//    public Object[] toArray() 
-//    {
-//        return Arrays.copyOf(array, size);
-//    }
-    
     @Override
-    public Object[] toArray()
+    public Object[] toArray() 
     {
-    	Object[] newMyArray = new Object[size];
-    	for (int i = 0; i < size; i++)
-    	{
-    		newMyArray[i] = array[i];
-    	}
-    	
-    	return newMyArray;
+        return Arrays.copyOf(array, size);
     }
-
-// ********************************************************
-//    @SuppressWarnings("unchecked")
-//    @Override
-//    public E[] toArray(E[] holder) throws NullPointerException 
-//    {
-//        if (holder == null) throw new NullPointerException("Holder array cannot be null");
-//        if (holder.length < size)
-//        {
-//            return (E[]) Arrays.copyOf(array, size, holder.getClass());
-//        }
-//        System.arraycopy(array, 0, holder, 0, size);
-//        if (size < holder.length) holder[size] = null;
-//        return holder;
-//    }
 
     @SuppressWarnings("unchecked")
 	@Override
@@ -297,20 +269,10 @@ public class MyArrayList<E> implements ListADT<E> {
     		throw new NullPointerException("Holder array cannot be null.");
     	}
     	
-    	if (toHold.length < size)
-    	{
-    		toHold = (E[]) new Object[size];
-    	}
-    	
-    	for (int i = 0; i < size; i++)
-    	{
-    		toHold[i] = array[i];
-    	}
-    	
-    	if (size < toHold.length)
-    	{
-    		toHold[size] = null;
-    	}
+        if (toHold.length < size) 
+        {
+            return (E[]) Arrays.copyOf(array, size, toHold.getClass());
+        }
     	
     	return toHold;
     }
@@ -324,6 +286,7 @@ public class MyArrayList<E> implements ListADT<E> {
         array[index] = toChange;
         return oldElement;
     }
+    
     /**
      * Checks the size of the array and increases the size if it cannot hold anymore elements
      * 
