@@ -238,14 +238,12 @@ public class MyArrayList<E> implements ListADT<E> {
 		@Override
 		public E  next() throws NoSuchElementException
 		{
-			if (hasNext() == false)
-			{
-				throw new NoSuchElementException("You have reached the end of the list.");
-				
-			}
+			throw new NoSuchElementException("You have reached the end of the list.");
 			
-			return array[currentIndex++];
 		}
+		
+		return array[currentIndex++];
+	}
     }
     
     @Override
