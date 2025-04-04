@@ -85,7 +85,6 @@ public class MyArrayList<E> implements ListADT<E> {
 		if(toAdd == null) throw new NullPointerException();
 		ensureCapacity();
 		array[size++] = toAdd;
-		size ++;
 		return true;
 	}
 
@@ -148,7 +147,6 @@ public class MyArrayList<E> implements ListADT<E> {
         }
         
         array[--size] = null;
-        size--;
         return removed;
     }
 
@@ -163,7 +161,6 @@ public class MyArrayList<E> implements ListADT<E> {
                 return remove(i);
             }
         }
-        size--;
         return null;
     }
 
@@ -174,8 +171,18 @@ public class MyArrayList<E> implements ListADT<E> {
         return array[index];
     }
 
+/**
+ * Returns the index of a element
+ * 
+ * Preconditions: a valid MyArrayList Object must exist
+ * Postconditions: the first index of the element being searched is returned
+ * 
+ * @param element Element you are searching for in the MyArrayList Object
+ * @return Returns the index of the first matching element
+ * @throws NullPointerException if the element being searched for is null
+ */
     public int indexOf(E element) throws NullPointerException 
-    { // Removed @Override
+    { 
         if (element == null) throw new NullPointerException("Cannot search for null element");
         for (int i = 0; i < size; i++) 
         {
@@ -267,20 +274,47 @@ public class MyArrayList<E> implements ListADT<E> {
     }
 
 // ********************************************************
-    @SuppressWarnings("unchecked")
-    @Override
-    public E[] toArray(E[] holder) throws NullPointerException 
-    {
-        if (holder == null) throw new NullPointerException("Holder array cannot be null");
-        if (holder.length < size)
-        {
-            return (E[]) Arrays.copyOf(array, size, holder.getClass());
-        }
-        System.arraycopy(array, 0, holder, 0, size);
-        if (size < holder.length) holder[size] = null;
-        return holder;
-    }
+//    @SuppressWarnings("unchecked")
+//    @Override
+//    public E[] toArray(E[] holder) throws NullPointerException 
+//    {
+//        if (holder == null) throw new NullPointerException("Holder array cannot be null");
+//        if (holder.length < size)
+//        {
+//            return (E[]) Arrays.copyOf(array, size, holder.getClass());
+//        }
+//        System.arraycopy(array, 0, holder, 0, size);
+//        if (size < holder.length) holder[size] = null;
+//        return holder;
+//    }
 
+    @SuppressWarnings("unchecked")
+	@Override
+    public E[] toArray(E[] toHold) throws NullPointerException
+    {
+    	if (toHold == null)
+    	{
+    		throw new NullPointerException("Holder array cannot be null.");
+    	}
+    	
+    	if (toHold.length < size)
+    	{
+    		toHold = (E[]) new Object[size];
+    	}
+    	
+    	for (int i = 0; i < size; i++)
+    	{
+    		toHold[i] = array[i];
+    	}
+    	
+    	if (size < toHold.length)
+    	{
+    		toHold[size] = null;
+    	}
+    	
+    	return toHold;
+    }
+    
     @Override
     public E set(int index, E toChange) throws NullPointerException, IndexOutOfBoundsException 
     {
@@ -290,7 +324,12 @@ public class MyArrayList<E> implements ListADT<E> {
         array[index] = toChange;
         return oldElement;
     }
-    
+    /**
+     * Checks the size of the array and increases the size if it cannot hold anymore elements
+     * 
+     * Preconditions: a valid MyArrayList Object must exist
+     * Postconditions: if the size of the array is not enough, it is increased by the length of the the array times the MULTIPLIER 
+     */
 	@SuppressWarnings("unchecked")
 	private void ensureCapacity()
 	{
