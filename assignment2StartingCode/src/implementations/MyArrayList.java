@@ -234,24 +234,18 @@ public class MyArrayList<E> implements ListADT<E> {
         {
             return currentIndex < size;
         }
-
-//        @Override
-//        public E next() {
-//            if (!hasNext()) throw new java.util.NoSuchElementException();
-//            return array[currentIndex++];
-//        }
         
-		@Override
-		public E  next() throws NoSuchElementException
+	@Override
+	public E  next() throws NoSuchElementException
+	{
+		if (hasNext() == false)
 		{
-			if (hasNext() == false)
-			{
-				throw new NoSuchElementException("You have reached the end of the list.");
-				
-			}
+			throw new NoSuchElementException("You have reached the end of the list.");
 			
-			return array[currentIndex++];
 		}
+		
+		return array[currentIndex++];
+	}
     }
     
     @Override
