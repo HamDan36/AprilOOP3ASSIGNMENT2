@@ -234,13 +234,7 @@ public class MyArrayList<E> implements ListADT<E> {
         {
             return currentIndex < size;
         }
-
-//        @Override
-//        public E next() {
-//            if (!hasNext()) throw new java.util.NoSuchElementException();
-//            return array[currentIndex++];
-//        }
-        
+       
 		@Override
 		public E  next() throws NoSuchElementException
 		{
