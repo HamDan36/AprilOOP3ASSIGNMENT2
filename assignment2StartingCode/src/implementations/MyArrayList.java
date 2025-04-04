@@ -247,7 +247,6 @@ public class MyArrayList<E> implements ListADT<E> {
 			if (hasNext() == false)
 			{
 				throw new NoSuchElementException("You have reached the end of the list.");
-				
 			}
 			
 			return array[currentIndex++];
@@ -299,13 +298,10 @@ public class MyArrayList<E> implements ListADT<E> {
     	
     	if (toHold.length < size)
     	{
-    		toHold = (E[]) new Object[size];
+    		return (E[]) Arrays.copyOf(array, size, toHold.getClass());
     	}
     	
-    	for (int i = 0; i < size; i++)
-    	{
-    		toHold[i] = array[i];
-    	}
+    	System.arraycopy(toHold, 0, toHold, 0, size);
     	
     	if (size < toHold.length)
     	{
@@ -324,6 +320,7 @@ public class MyArrayList<E> implements ListADT<E> {
         array[index] = toChange;
         return oldElement;
     }
+    
     /**
      * Checks the size of the array and increases the size if it cannot hold anymore elements
      * 
