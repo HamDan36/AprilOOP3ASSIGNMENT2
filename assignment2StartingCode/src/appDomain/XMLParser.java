@@ -11,19 +11,32 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * XML Parser implementation using custom Stack and Queue ADTs.
+ * XML Parser implementation using custom Stack and Queue ADTs. It identifies the opening and closing tags of a XML document and checks for mismatches to identify errors.
+ * The errors are identified and labeled with the line number they are on in a report.
  */
 public class XMLParser {
     private StackADT<String> stack;
     private QueueADT<String> errorQ;
     private QueueADT<String> extrasQ;
 
+    /**
+     * No argument constructor for XMLParser class
+     * Preconditions: none
+     * Postconditions: a new XMLParser object is created
+     */
     public XMLParser() {
         stack = new MyStack<>();
         errorQ = new MyQueue<>();
         extrasQ = new MyQueue<>();
     }
 
+    /**
+     * Parses through the XML file given in the parameter
+     * Preconditions: a valid XML Parse object must exist
+     * Postconditions: the file from the filePath is parsed for errors and a report is generated
+     * 
+     * @param filePath Path to the XML file
+     */
     public void parseFile(String filePath) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
