@@ -32,7 +32,7 @@ public class XMLParser {
 
     /**
      * Parses through the XML file given in the parameter
-     * Preconditions: a valid XML Parse object must exist
+     * Preconditions: a valid XMLParser object must exist
      * Postconditions: the file from the filePath is parsed for errors and a report is generated
      * 
      * @param filePath Path to the XML file
@@ -143,6 +143,11 @@ public class XMLParser {
         return -1; // No match found
     }
 
+    /**
+     * Finalizes parsing after the entire XML file is processed
+     * Preconditions: All the lines in the XML file has been processed
+     * Postconditions: Any tags remaining in the queue are flagged as errors 
+     */
     private void finalizeParsing() {
         // At the end of the file, pop everything from the stack and add to errorQ
         while (!stack.isEmpty()) {
@@ -155,6 +160,11 @@ public class XMLParser {
         }
     }
 
+    /**
+     * Processes Queues to generate an error report
+     * Preconditions: Non-empty valid error and extra Queues must exist
+     * Postconditions: The extra and error queues are emptied and an error report is generated based on contents of the Queues
+     */
     private void processQueues() {
         // Process and report errors from both queues
         while (!errorQ.isEmpty() || !extrasQ.isEmpty()) {
@@ -179,6 +189,11 @@ public class XMLParser {
         }
     }
 
+    /**
+     * Reports errors from both extra and error Queue objects and prints error statements
+     * Preconditions: Valid, non-empty error and extra queues must exist
+     * Postconditions: Both error and extra Queues are emptied. Errors are processed and error statements are generated
+     */
     private void reportErrors() {
         // Report errors from both queues
         Iterator<String> errorIter = errorQ.iterator();
@@ -193,6 +208,13 @@ public class XMLParser {
         }
     }
 
+    /**
+     * Main method for the XMLParser class
+     * Preconditions: None
+     * Postconditions: The XMLParser parses through the XML file and if errors are found, an error report is printed
+     * 
+     * @param args cmd line arguments containing the path to the XML file
+     */
     public static void main(String[] args) {
         if (args.length != 1) {
             System.out.println("Usage: java -jar Parser.jar <xmlFile>");
