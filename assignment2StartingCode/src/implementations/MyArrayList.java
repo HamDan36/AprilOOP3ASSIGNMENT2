@@ -26,21 +26,6 @@ public class MyArrayList<E> implements ListADT<E> {
         array = (E[]) new Object[DEFAULT_CAPACITY];
         size = 0;
     }
-
-//    @Override
-//    public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
-//        if (toAdd == null) throw new NullPointerException("Cannot add null element");
-//        if (index < 0 || index > size) throw new IndexOutOfBoundsException("Index out of bounds");
-//        if (size == array.length) {
-//            array = Arrays.copyOf(array, array.length * 2);
-//        }
-//        for (int i = size; i > index; i--) {
-//            array[i] = array[i - 1];
-//        }
-//        array[index] = toAdd;
-//        size++;
-//        return true;
-//    }
     
  	@Override
 	public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException
@@ -74,16 +59,6 @@ public class MyArrayList<E> implements ListADT<E> {
 		
 		return true;
 	}   
-
-//    @Override
-//    public boolean add(E toAdd) throws NullPointerException {
-//        if (toAdd == null) throw new NullPointerException("Cannot add null element");
-//        if (size == array.length) {
-//            array = Arrays.copyOf(array, array.length * 2);
-//        }
-//        array[size++] = toAdd;
-//        return true;
-//    }
  	
 	@Override
 	public boolean add(E toAdd) throws NullPointerException
@@ -105,42 +80,6 @@ public class MyArrayList<E> implements ListADT<E> {
         }
         return changed;
     }
-	
-//	@Override
-//	public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException
-//	{	
-//		Iterator< ? extends E > iterator = toAdd.iterator();	
-//		
-//		if (toAdd == null) throw new NullPointerException("Cannot add null list.");
-//		
-////		int backupSize = size;
-////		E[] backupArray = (E[]) new Object[backupSize];
-//		
-//		
-//		// create backup
-//		for(int i = 0 ; i < array.length; i++)
-//		{
-//			backupArray[i] = array[i]; // copies all the objects in old array into new one
-//		}
-//		
-//		try
-//		{
-//			while(iterator.hasNext() == true)
-//			{
-//				add(iterator.next());
-//			}
-//			size = array.length;
-//		}
-//		
-//		catch (Exception e)
-//		{
-//			array = backupArray; // restore if failure to add all elements
-//			size = backupSize;	
-//			return false;
-//		}
-//		
-//		return true;
-//	}
 
     @Override
     public E remove(int index) throws IndexOutOfBoundsException 
