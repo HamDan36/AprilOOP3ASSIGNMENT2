@@ -103,6 +103,15 @@ public class MyDLL<E> implements ListADT<E> {
         return getNode(index).getData();
     }
 
+    /**
+     * Retrieves the index of the searched element in the doubly linked list
+     * Preconditions: a valid MyDLL object must exist
+     * Postconditions: the index of the first matching element to the parameter element is returned
+     * 
+     * @param element Element to be searched for
+     * @return Returns the index of the first matching element
+     * @throws NullPointerException If the parameter element is null
+     */
     public int indexOf(E element) throws NullPointerException { // Helper method, not overridden
         if (element == null) throw new NullPointerException("Cannot search for null element");
         MyDLLNode<E> current = head;
