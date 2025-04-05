@@ -51,6 +51,14 @@ public class XMLParser {
         }
     }
 
+    /**
+     * Handles a single line in the XML file and processes the opening and closing tags
+     * Preconditions: a valid XMLParser object must exist with a valid BufferedReader file object
+     * Postconditions: a line in the XML file is processed and starting and ending tags are placed in the correct Queues, errors are created by matching the two queues and placed in the error queue.
+     *  
+     * @param line Current line from the XML file
+     * @param lineNumber Current line number being processed
+     */
     private void processLine(String line, int lineNumber) {
         String trimmedLine = line.trim();
         if (trimmedLine.startsWith("<?") || trimmedLine.isEmpty()) return; // Ignore processing instructions
@@ -94,7 +102,15 @@ public class XMLParser {
             }
         }
     }
-
+    
+    /**
+     * Extracts the tags in the line from the XML file
+     * Preconditions: A line from XML file starting with a XML tag must be the parameter
+     * Postconditions: Returns the tag name from the line
+     * 
+     * @param line Line from the XML file, must start with a XML tag
+     * @return Returns the tag name from the line processed
+     */
     private String extractTag(String line) {
         // Remove angle brackets and slashes for both start and end tags
         line = line.replaceAll("[<>]", "");
@@ -108,6 +124,14 @@ public class XMLParser {
         return line.substring(0, endIndex);
     }
 
+    /** 
+     * Iterates through the Stack object to find a matching tag to the parameter, the index of first matching tag is returned
+     * Preconditions: A valid Stack object must exist
+     * Postconditions: The index of the first matching tag is returned, or -1 if no match was found
+     * 
+     * @param tag Tag to be searched for in the Stack object
+     * @return Returns the index of the first matching tag is returned, or -1 otherwise
+     */
     private int searchStackForMatch(String tag) {
         Iterator<String> iter = stack.iterator();
         int index = 1;
