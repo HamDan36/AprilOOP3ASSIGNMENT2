@@ -11,6 +11,12 @@ import java.util.EmptyStackException;
 public class MyStack<E> implements StackADT<E> {
     private MyArrayList<E> list;
 
+    /**
+     * No argument constructor
+     * 
+     * Preconditions: none
+     * Postconditions: a new MyStack Object is created
+     */
     public MyStack() {
         list = new MyArrayList<>();
     }
